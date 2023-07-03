@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<head>
+    <script src="datecalc.js"></script>
+</head>
+
+<body>
+    <form>
+        <input type="date" id="diff-start-date" value="2000-01-01" onchange="calc_difference()">
+        <input type="date" id="diff-end-date" value="2000-01-01" onchange="calc_difference()">
+    </form>
+
+    <p>Days: <span id="days"></span></p>
+    <p>Weeks: <span id="weeks"></span></p>
+    <p>Years: <span id="years"></span></p>
+
+    <hr>
+
+    <form>
+        <input type="date" id="end-start-date" value="2000-01-01" onchange="calc_end_date()">
+        <input type="number" id="end-weeks" value="0" onchange="calc_end_date()">
+    </form>
+    <p>End Date: <span id="end-date"></span></p>
+    <button onclick="calc_end_date()">Calculate end date</button>
+
+    <hr>
+    <form>
+        <input type="date" id="block-start-date" value="2000-01-01">
+        <input type="number" id="block-weeks" value="0">
+
+    </form>
+    <button onclick="add_block()">Add block</button>
+    Start Date: <span id="start-date"></span></p>
+
+    <ol id="block-list"></ol>
+
+    <hr>
+
+    <script>
+        set_to_today("diff-start-date");
+        set_to_today("diff-end-date");
+        set_to_today("end-start-date");
+        set_to_today("block-start-date");
+        calc_difference();
+        calc_end_date();
+    </script>
+</body>
+
+</html>
