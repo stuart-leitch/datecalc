@@ -3,8 +3,8 @@ input[type=text],
 input[type=date],
 select,
 textarea {
-  width: 100%;
-  /* Full width */
+  width: 150px;
+
   padding: 12px;
   /* Some padding */
   border: 1px solid #ccc;
@@ -17,6 +17,4 @@ textarea {
   /* Add a top margin */
   margin-bottom: 16px;
   /* Bottom margin */
-  resize: vertical
-    /* Allow the user to vertically resize the textarea (not horizontally) */
 }
