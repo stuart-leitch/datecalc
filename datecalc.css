@@ -1,6 +1,7 @@
 /* Style inputs with type="text", select elements and textareas */
 input[type=text],
 input[type=date],
+input[type=number],
 select,
 textarea {
   width: 150px;
