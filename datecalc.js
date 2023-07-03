@@ -1,3 +1,9 @@
+function initialise() {
+  set_to_today('diff-start-date');
+  set_to_today("diff-end-date");
+  set_to_today('end-start-date');
+  set_to_today('block-start-date');
+}
 function calc_difference() {
   var start = new Date(document.getElementById("diff-start-date").value);
   var end = new Date(document.getElementById("diff-end-date").value);
@@ -39,4 +45,7 @@ function add_block() {
 function set_to_today(element_id) {
   var today = new Date();
   document.getElementById(element_id).value = today.toISOString().substring(0, 10);
+
+  const ev = new Event('change');
+  document.getElementById(element_id).dispatchEvent(ev);
 }
