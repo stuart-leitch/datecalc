@@ -5,28 +5,32 @@
     <link rel="stylesheet" href="datecalc.css">
 </head>
 
-<body onload=" initialise();">
-    <div></div>
-    <h1>Time between dates</h1>
-    <form>
-        <label for="diff-start-date">Start Date</label>
-        <input type="date" id="diff-start-date" onchange="calc_difference()">
-        <label for="diff-end-date">End Date</label>
-        <input type="date" id="diff-end-date" onchange="calc_difference()">
-    </form>
-    <p>Days: <span id="days"></span></p>
-    <p>Weeks: <span id="weeks"></span></p>
+<body>
+    <div>
+        <h1>Time between dates</h1>
+        <form>
+            <label for="diff-start-date">Start Date</label>
+            <input type="date" id="diff-start-date">
+
+            <label for="diff-end-date">End Date</label>
+            <input type="date" id="diff-end-date">
+        </form>
+        <p>Days: <span id="days"></span></p>
+        <p>Weeks: <span id="weeks"></span></p>
     </div>
     <hr>
     <div>
         <h1>Add weeks to date</h1>
         <form>
-            <label for="start-start-date">Start Date</label>
-            <input type="date" id="end-start-date" onchange="calc_end_date()">
-            <label for="end-weeks">Weeks</label>
-            <input type="number" id="end-weeks" value="0" onchange="calc_end_date()">
+            <label for="end-date-start">Start Date</label>
+            <input type="date" id="end-date-start">
+
+            <label for="end-date-weeks">Weeks</label>
+            <input type="number" id="end-date-weeks" value="0">
         </form>
-        <p>End Date: <span id="end-date"></span></p>
+        <p>Start Date: <span id="end-date-start-out"></span></p>
+        <p>End Date: <span id="end-date-end-out"></span></p>
+        <button id="set-end-date-as-start-btn">Set start date</button>
     </div>
     <hr>
     <div>
@@ -37,10 +41,12 @@
             <label for="block-weeks">Weeks</label>
             <input type="number" id="block-weeks" value="0">
         </form>
-        <button onclick="add_block()">Add block</button>
-        Start Date: <span id="start-date"></span></p>
-
-        <ol id="block-list"></ol>
+        <button id="add-block-to-list-btn">Add block</button>
+        <p>Start Date: <span id="start-date">
+                <ol id="block-list">
+                </ol>
+            </span>
+        </p>
     </div>
 
 </body>
