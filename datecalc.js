@@ -28,6 +28,20 @@ function addClickListener(elem, fn) {
   addListener(elem, "click", fn);
 }
 
+function hasChanged(element_id) {
+  const ev = new Event('change');
+  document.getElementById(element_id).dispatchEvent(ev);
+}
+
+function set_to_today(element_id) {
+  var today = new Date();
+  document.getElementById(element_id).value = today.toISOString().substring(0, 10);
+
+  // const ev = new Event('change');
+  // document.getElementById(element_id).dispatchEvent(ev);
+  hasChanged(element_id);
+}
+
 function calc_difference() {
   var start = new Date(document.getElementById("diff-start-date").value);
   var end = new Date(document.getElementById("diff-end-date").value);
@@ -46,14 +60,15 @@ function calc_end_date() {
   var start = new Date(document.getElementById("end-date-start").value);
   var weeks = document.getElementById("end-date-weeks").value;
   var end = new Date(start.getTime() + (weeks * 7 * 24 * 60 * 60 * 1000));
+
+  document.getElementById("end-date-end").value = end.toISOString().substring(0, 10);
   document.getElementById("end-date-start-out").innerHTML = start.toDateString();
   document.getElementById("end-date-end-out").innerHTML = end.toDateString();
 }
 
 function set_as_start() {
-  var end = new Date(document.getElementById("end-date-end-out").innerHTML);
-  document.getElementById("end-date-start").value = end.toISOString().substring(0, 10);
-  calc_end_date();
+  document.getElementById("end-date-start").value = document.getElementById("end-date-end").value;
+  hasChanged("end-date-start");
 }
 
 function add_block() {
@@ -65,12 +80,5 @@ function add_block() {
   li.appendChild(t);
   document.getElementById("block-list").appendChild(li);
   document.getElementById("block-start-date").value = end.toISOString().substring(0, 10);
-  calc_end_date();
-}
-function set_to_today(element_id) {
-  var today = new Date();
-  document.getElementById(element_id).value = today.toISOString().substring(0, 10);
-
-  const ev = new Event('change');
-  document.getElementById(element_id).dispatchEvent(ev);
+  // calc_end_date();
 }
