@@ -7,9 +7,9 @@ class DateBox {
     addListener(this.id, "change", this.updated.bind(this));
   }
   set(value, update = true) {
-    this.value = value;
-    document.getElementById(this.id).value = this.value.toISOString().substring(0, 10);
-    this.value = new Date(document.getElementById(this.id).value);
+    const dateString = value.toISOString().substring(0, 10);
+    this.value = new Date(dateString);
+    document.getElementById(this.id).value = dateString;
     if (update) { eval(this.whenChanged + "()") }
   }
   updated() {
