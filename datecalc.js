@@ -18,14 +18,29 @@ class DateBox {
   }
 }
 
+class WeekBox {
+  constructor(id, chg) {
+    this.id = id;
+    this.whenChanged = chg;
+    this.set(0, false);
+    addListener(this.id, "change", this.updated.bind(this));
+  }
+  set(value, update = true) {
+    this.value = value;
+    document.getElementById(this.id).value = value;
+    if (update) { eval(this.whenChanged + "()") }
+  }
+  updated() {
+    this.value = document.getElementById(this.id).value;
+    eval(this.whenChanged + "()")
+  }
+}
 
 window.onload = initialise;
 
 function initialise() {
   // event listeners
-  addListener("end-date-weeks", "change", calc_end_date)
   addListener("set-end-date-as-start-btn", "click", set_as_start)
-  addListener("block-weeks", "change", block_end)
   addListener("add-block-to-list-btn", "click", add_block)
 
   diffStartDate = new DateBox("diff-start-date", "calc_difference");
@@ -33,10 +48,12 @@ function initialise() {
   calc_difference();
 
   calcStart = new DateBox("end-date-start", "calc_end_date");
+  calcWeeks = new WeekBox("end-date-weeks", "calc_end_date");
   calcEnd = new Date()
   calc_end_date();
 
   blockStart = new DateBox("block-start-date", "block_end");
+  blockWeeks = new WeekBox("block-weeks", "block_end");
   blockEnd = new DateBox("block-end-date", "console.log");
 }
 
@@ -60,7 +77,7 @@ function calc_difference() {
 function calc_end_date() {
   var start = calcStart.value;
 
-  var weeks = document.getElementById("end-date-weeks").value;
+  var weeks = calcWeeks.value;
   calcEnd = new Date(start.getTime() + (weeks * 7 * 24 * 60 * 60 * 1000));
 
   document.getElementById("end-date-start-out").innerHTML = start.toDateString();
@@ -73,18 +90,18 @@ function set_as_start() {
 
 function block_end() {
   var start = blockStart.value;
-  var weeks = document.getElementById("block-weeks").value;
+  var weeks = blockWeeks.value;
   var end = new Date(start.getTime() + ((weeks * 7 - 1) * 24 * 60 * 60 * 1000));
   blockEnd.set(end);
 }
 function add_block() {
   var start = blockStart.value;
-  var weeks = document.getElementById("block-weeks").value;
+  var weeks = blockWeeks.value;
   var end = blockEnd.value;
   var nextStart = new Date(start.getTime() + (weeks * 7 * 24 * 60 * 60 * 1000));
 
   var li = document.createElement("LI");
-  var t = document.createTextNode(start.toDateString() + ' - ' + end.toDateString());
+  var t = document.createTextNode(start.toDateString() + ' - ' + end.toDateString() + ' (' + weeks + 'w)');
   li.appendChild(t);
   document.getElementById("block-list").appendChild(li);
 
