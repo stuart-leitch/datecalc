@@ -6,7 +6,9 @@
 </head>
 
 <body>
-    <div>
+
+    <img src="CalanderExport.png" alt="Marvelous Mancub Logo" id="logo">
+    <div class="tool">
         <h1>Time between dates</h1>
         <form>
             <label for="diff-start-date">Start Date</label>
@@ -14,12 +16,12 @@
 
             <label for="diff-end-date">End Date</label>
             <input type="date" id="diff-end-date">
+            <p>Days: <span id="days" class="output"></span></p>
+            <p>Weeks: <span id="weeks" class="output"></span></p>
         </form>
-        <p>Days: <span id="days"></span></p>
-        <p>Weeks: <span id="weeks"></span></p>
     </div>
-    <hr>
-    <div>
+
+    <div class="tool">
         <h1>Add weeks to date</h1>
         <form>
             <label for="end-date-start">Start Date</label>
@@ -28,25 +30,25 @@
             <label for="end-date-weeks">Weeks</label>
             <input type="number" id="end-date-weeks" value="0">
 
+            <p>Start Date: <span id="end-date-start-out" class="output"></span></p>
+            <p>End Date: <span id="end-date-end-out" class="output"></span></p>
         </form>
-        <p>Start Date: <span id="end-date-start-out"></span></p>
-        <p>End Date: <span id="end-date-end-out"></span></p>
         <button id="set-end-date-as-start-btn">Set start date</button>
     </div>
-    <hr>
-    <div>
+
+    <div class="tool">
         <h1>Training blocks</h1>
         <form>
             <label for="block-start-date">Start Date</label>
             <input type="date" id="block-start-date">
             <label for="block-weeks">Weeks</label>
             <input type="number" id="block-weeks" value="0">
+            <label for="block-end-date">End Date</label>
             <input type="date" id="block-end-date">
         </form>
         <button id="add-block-to-list-btn">Add block</button>
-        <p>Start Date: <span id="start-date">
-                <ol id="block-list">
-                </ol>
+        <p>Start Date: <span id="start-date" class="output">
+                <ol id="block-list"> </ol>
             </span>
         </p>
     </div>
