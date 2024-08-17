@@ -83,3 +83,9 @@ button {
   cursor: pointer;
   color: blueviolet;
 }
+
+input,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
