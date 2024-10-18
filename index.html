@@ -1,72 +1,157 @@
 <!DOCTYPE html>
 
 <head>
-    <script type="module" src="datecalc.js"></script>
-    <link rel="stylesheet" href="datecalc.css">
+  <title>Marvelous Date Calculator</title>
+  <script type="module" src="datecalc.js"></script>
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"> -->
+  <link rel="stylesheet" href="bulma.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
+  <section class="section">
+    <div class="container">
 
-    <img src="CalanderExport.png" alt="Marvelous Mancub Logo" id="logo">
+      <img src="CalanderExport.png" alt="Marvelous Mancub Logo" id="logo" width="20%">
+      <h1 class="title">Marvelous Date Calculator</h1>
+      <p class="subtitle">A simple date calculator to help you with your training blocks</p>
 
-    <div class="tool" data-controller="datediff">
-        <h1>Time between dates</h1>
-        <form>
-            <label for="date-diff-start">Start Date</label>
-            <input type="date" id="date-diff-start" data-datediff-target="start" data-action="change->datediff#change"
-                data-controller="datetoday">
+      <div class="grid is-col-min-15">
 
-            <label for="date-diff-end">End Date</label>
-            <input type="date" id="date-diff-end" data-datediff-target="end" data-action="change->datediff#change"
-                data-controller="datetoday">
+        <div class="cell is-col-min-15">
+          <div class="card">
+            <header class="card-header has-background-link">
+              <h2 class="card-header-title ">Time between dates</h2>
+            </header>
 
-            <label for="date-diff-days">Days between</label>
-            <span id="diff-days" class="output" data-datediff-target="days">0 days</span>
+            <div class="card-content">
+              <form data-controller="datediff">
+                <div class="field">
+                  <label for="date-diff-start" class="label">Start Date</label>
+                  <input type="date" id="date-diff-start" data-datediff-target="start"
+                    data-action="change->datediff#change" data-controller="datetoday" class="input">
+                </div>
 
-            <label for="date-diff-weeks">Weeks between</label>
-            <span id="date-diff-weeks" class="output" data-datediff-target="weeks">0 weeks and 0 days</span>
-        </form>
-    </div>
+                <div class="field">
+                  <label for="date-diff-end" class="label">End Date</label>
+                  <input type="date" id="date-diff-end" data-datediff-target="end" data-action="change->datediff#change"
+                    data-controller="datetoday" class="input">
+                </div>
 
-    <div class="tool" data-controller="dateadd">
-        <h1>Add weeks to date</h1>
-        <form>
-            <label for="date-add-start">Start Date</label>
-            <input type="date" id="date-add-start" data-dateadd-target="start" data-action="change->dateadd#change"
-                data-controller="datetoday">
+                <div class="box ">
+                  <dl class="content">
+                    <dt>Days:</dt>
+                    <dd data-datediff-target="days">0 days</dd>
+                    <dt>Weeks:</dt>
+                    <dd data-datediff-target="weeks" class>999 weeks, 6 days</dd>
+                  </dl>
+                </div>
 
-            <label for="date-add-weeks">Weeks</label>
-            <input type="number" id="date-add-weeks" value="0" data-dateadd-target="weeks"
-                data-action="change->dateadd#change">
 
-            <label for="end-date-weeks">End Date</label>
-            <span id="date-add-end" class="output" data-dateadd-target="end"></span>
-        </form>
-        <button id="set-end-date-as-start-btn" data-action="dateadd#setStart">Set start date</button>
-    </div>
+              </form>
+            </div>
+          </div>
+        </div>
 
-    <div class="tool" data-controller="dateblock">
-        <h1>Training blocks</h1>
-        <form>
-            <label for="block-start-date">Start Date</label>
-            <input type="date" id="block-start-date" data-dateblock-target="start" data-controller="datetoday"
-                data-action="dateblock#changedStart">
+        <div class="cell is-col-min-15">
+          <div class="card">
+            <header class="card-header has-background-link">
+              <h2 class="card-header-title ">Add weeks to date</h2>
+            </header>
 
-            <label for="block-weeks">Weeks</label>
-            <input type="number" id="block-weeks" value="0" data-dateblock-target="weeks"
-                data-action="dateblock#changedWeeks">
+            <div class="card-content">
+              <form data-controller="dateadd">
+                <div class="field">
+                  <label for="date-add-start" class="label">Start Date</label>
+                  <input class="input" type="date" id="date-add-start" data-dateadd-target="start"
+                    data-action="change->dateadd#change" data-controller="datetoday">
+                </div>
 
-            <label for="block-end-date">End Date</label>
-            <input type="date" id="block-end-date" data-dateblock-target="end" data-controller="datetoday"
-                data-action="dateblock#changedEnd">
-        </form>
-        <button id="add-block-to-list-btn" data-action="dateblock#addBlock">Add block</button>
-        <p>Start Date: <span id="start-date" class="output">
-                <ol id="block-list" data-dateblock-target="list"> </ol>
-            </span>
-        </p>
-    </div>
+                <div class="field">
+                  <label for="date-add-weeks" class="label">Weeks</label>
+                  <input class="input" type="number" id="date-add-weeks" value="0" data-dateadd-target="weeks"
+                    data-action="change->dateadd#change">
+                </div>
 
+                <div class="field">
+                  <label for="date-add-end" class="label">End Date</label>
+                  <div class="field has-addons">
+                    <div class="control is-expanded">
+                      <p class="input" id="date-add-end" type="date" data-dateadd-target="end"
+                        data-controller="datetoday" readonly>31/10/2024</p>
+                    </div>
+                    <div class="control">
+                      <button id="set-end-date-as-start-btn" data-action="dateadd#setStart"
+                        class="button is-primary">Use
+                        as start date</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="cell is-col-min-15">
+          <div class="card" data-controller="dateblock">
+            <header class="card-header has-background-link">
+              <h2 class="card-header-title ">Training blocks</h2>
+            </header>
+            <div class="card-content">
+              <form>
+                <div class="field">
+                  <label for="block-start-date" class="label">Start Date</label>
+                  <input class="input" type="date" id="block-start-date" data-dateblock-target="start"
+                    data-controller="datetoday" data-action="dateblock#changedStart">
+                </div>
+
+                <div class="field">
+                  <label for="block-weeks" class="label">Weeks</label>
+                  <input type="number" class="input" id="block-weeks" value="0" data-dateblock-target="weeks"
+                    data-action="dateblock#changedWeeks">
+                </div>
+
+                <div class="field">
+                  <label for="block-end-date" class="label">End Date</label>
+                  <div class="field has-addons">
+                    <div class="control is-expanded">
+                      <input class="input" type="date" id="block-end-date" data-dateblock-target="end"
+                        data-controller="datetoday" data-action="dateblock#changedEnd">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="" class="label"> Note:</label>
+                  <input type="text" class="input">
+                </div>
+
+                <div class="field is-grouped is-grouped-right">
+                  <div class="control ">
+                    <button class="button is-primary" id="add-block-to-list-btn" data-action="dateblock#addBlock">Add
+                      block</button>
+                  </div>
+                </div>
+
+              </form>
+              <br>
+
+              <div class="card">
+                <header class="card-header has-background-info">
+                  <h3 class="card-header-title has-text-black">Blocks</h3>
+                </header>
+                <div class="card-content">
+                  <ol id="block-list" data-dateblock-target="list">
+                    <li>sdesfsfsfe</li>
+                    <li>wefew wersefes f</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
 </body>
 
 </html>
