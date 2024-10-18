@@ -1,54 +1,68 @@
 <!DOCTYPE html>
 
 <head>
-    <script src="datecalc.js"></script>
+    <script type="module" src="datecalc.js"></script>
     <link rel="stylesheet" href="datecalc.css">
 </head>
 
 <body>
 
     <img src="CalanderExport.png" alt="Marvelous Mancub Logo" id="logo">
-    <div class="tool">
+
+    <div class="tool" data-controller="datediff">
         <h1>Time between dates</h1>
         <form>
-            <label for="diff-start-date">Start Date</label>
-            <input type="date" id="diff-start-date">
+            <label for="date-diff-start">Start Date</label>
+            <input type="date" id="date-diff-start" data-datediff-target="start" data-action="change->datediff#change"
+                data-controller="datetoday">
 
-            <label for="diff-end-date">End Date</label>
-            <input type="date" id="diff-end-date">
-            <p>Days: <span id="days" class="output"></span></p>
-            <p>Weeks: <span id="weeks" class="output"></span></p>
+            <label for="date-diff-end">End Date</label>
+            <input type="date" id="date-diff-end" data-datediff-target="end" data-action="change->datediff#change"
+                data-controller="datetoday">
+
+            <label for="date-diff-days">Days between</label>
+            <span id="diff-days" class="output" data-datediff-target="days">0 days</span>
+
+            <label for="date-diff-weeks">Weeks between</label>
+            <span id="date-diff-weeks" class="output" data-datediff-target="weeks">0 weeks and 0 days</span>
         </form>
     </div>
 
-    <div class="tool">
+    <div class="tool" data-controller="dateadd">
         <h1>Add weeks to date</h1>
         <form>
-            <label for="end-date-start">Start Date</label>
-            <input type="date" id="end-date-start">
+            <label for="date-add-start">Start Date</label>
+            <input type="date" id="date-add-start" data-dateadd-target="start" data-action="change->dateadd#change"
+                data-controller="datetoday">
 
-            <label for="end-date-weeks">Weeks</label>
-            <input type="number" id="end-date-weeks" value="0">
+            <label for="date-add-weeks">Weeks</label>
+            <input type="number" id="date-add-weeks" value="0" data-dateadd-target="weeks"
+                data-action="change->dateadd#change">
 
-            <p>Start Date: <span id="end-date-start-out" class="output"></span></p>
-            <p>End Date: <span id="end-date-end-out" class="output"></span></p>
+            <label for="end-date-weeks">End Date</label>
+            <span id="date-add-end" class="output" data-dateadd-target="end"></span>
         </form>
-        <button id="set-end-date-as-start-btn">Set start date</button>
+        <button id="set-end-date-as-start-btn" data-action="dateadd#setStart">Set start date</button>
     </div>
 
-    <div class="tool">
+    <div class="tool" data-controller="dateblock">
         <h1>Training blocks</h1>
         <form>
             <label for="block-start-date">Start Date</label>
-            <input type="date" id="block-start-date">
+            <input type="date" id="block-start-date" data-dateblock-target="start" data-controller="datetoday"
+                data-action="dateblock#changedStart">
+
             <label for="block-weeks">Weeks</label>
-            <input type="number" id="block-weeks" value="0">
+            <input type="number" id="block-weeks" value="0" data-dateblock-target="weeks"
+                data-action="dateblock#changedWeeks">
+
             <label for="block-end-date">End Date</label>
-            <input type="date" id="block-end-date">
+            <input type="date" id="block-end-date" data-dateblock-target="end" data-controller="datetoday"
+                data-action="dateblock#changedEnd">
         </form>
-        <button id="add-block-to-list-btn">Add block</button>
+        <button id="add-block-to-list-btn" data-action="dateblock#addBlock">Add block</button>
         <p>Start Date: <span id="start-date" class="output">
-                <ol id="block-list"> </ol>
+                <ol id="block-list" data-dateblock-target="list"> </ol>
             </span>
         </p>
     </div>
