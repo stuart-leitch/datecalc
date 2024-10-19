@@ -39,12 +39,9 @@
                 </div>
 
                 <div class="box ">
-                  <dl class="content">
-                    <dt>Days:</dt>
-                    <dd data-datediff-target="days">0 days</dd>
-                    <dt>Weeks:</dt>
-                    <dd data-datediff-target="weeks" class>999 weeks, 6 days</dd>
-                  </dl>
+                  <div class="content has-text-info">
+                    <p data-datediff-target="output"></p>
+                  </div>
                 </div>
 
 
@@ -77,13 +74,12 @@
                   <label for="date-add-end" class="label">End Date</label>
                   <div class="field has-addons">
                     <div class="control is-expanded">
-                      <p class="input" id="date-add-end" type="date" data-dateadd-target="end"
-                        data-controller="datetoday" readonly>31/10/2024</p>
+                      <input class="input" type="date" id="date-add-end" data-dateadd-target="end"
+                        data-controller="datetoday" readonly>0 days</input>
                     </div>
                     <div class="control">
-                      <button id="set-end-date-as-start-btn" data-action="dateadd#setStart"
-                        class="button is-primary">Use
-                        as start date</button>
+                      <button type="button" id="set-end-date-as-start-btn" data-action="dateadd#setStart"
+                        class="button is-primary">Use as start date</button>
                     </div>
                   </div>
                 </div>
