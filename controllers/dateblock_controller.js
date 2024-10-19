@@ -1,7 +1,7 @@
 import { Controller } from "https://unpkg.com/@hotwired/stimulus/dist/stimulus.js"
 
 export default class extends Controller {
-  static targets = ["start", "weeks", "end", "list"]
+  static targets = ["start", "weeks", "end", "note", "blocks"]
 
   changedStart() {
     var start = new Date(this.startTarget.value)
@@ -27,13 +27,16 @@ export default class extends Controller {
     var weeks = this.weeksTarget.value;
     var end = this.endTarget.value;
 
-    var t = document.createTextNode(start + ' - ' + end + ' (' + weeks + 'w)');
-    var li = document.createElement("LI");
-    li.appendChild(t);
-    this.element.appendChild(li);
 
-    var nextStart = end + (1 * 24 * 60 * 60 * 1000);
-    this.startTarget.value = nextStart
+    var li = document.createElement("LI");
+    var t = document.createTextNode(start + ' - ' + end + ' (' + weeks + 'w) { ' + this.noteTarget.value + ' }');
+    li.appendChild(t);
+    this.blocksTarget.appendChild(li);
+
+    var nextStart = new Date(new Date(end).getTime() + (1 * 24 * 60 * 60 * 1000));
+    console.log(nextStart)
+
+    this.startTarget.value = nextStart.toISOString().substring(0, 10);
     this.changedStart()
   }
 }

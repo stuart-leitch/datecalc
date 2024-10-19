@@ -119,13 +119,13 @@
 
                 <div class="field">
                   <label for="" class="label"> Note:</label>
-                  <input type="text" class="input">
+                  <input type="text" class="input" data-dateblock-target="note">
                 </div>
 
                 <div class="field is-grouped is-grouped-right">
                   <div class="control ">
-                    <button class="button is-primary" id="add-block-to-list-btn" data-action="dateblock#addBlock">Add
-                      block</button>
+                    <button type="button" class="button is-primary" id="add-block-to-list-btn"
+                      data-action="dateblock#addBlock">Add block</button>
                   </div>
                 </div>
 
@@ -137,9 +137,8 @@
                   <h3 class="card-header-title has-text-black">Blocks</h3>
                 </header>
                 <div class="card-content">
-                  <ol id="block-list" data-dateblock-target="list">
-                    <li>sdesfsfsfe</li>
-                    <li>wefew wersefes f</li>
+                  <ol id="block-list" data-dateblock-target="blocks">
+
                   </ol>
                 </div>
               </div>
